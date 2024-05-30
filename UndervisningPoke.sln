@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34511.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UndervisningPoke", "UndervisningPoke\UndervisningPoke.csproj", "{6CDCC59F-7E85-4031-AA6C-7867888DFF8E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6CDCC59F-7E85-4031-AA6C-7867888DFF8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CDCC59F-7E85-4031-AA6C-7867888DFF8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CDCC59F-7E85-4031-AA6C-7867888DFF8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CDCC59F-7E85-4031-AA6C-7867888DFF8E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {027D78E7-D4EE-4E62-AC8E-E4B76D3FB0BD}
+	EndGlobalSection
+EndGlobal
