@@ -23,9 +23,23 @@ namespace UndervisningPoke
             Type = type;
         }
 
-        public void Attack()
+        public bool IsAlive()
         {
+            if(Health > 0) return true; 
+            
+            return false;
+        }
 
+        public void LooseHealth(int healthToLoose)
+        {
+            Health -= healthToLoose;
+        }
+
+        public void Attack(Pokemon opponent)
+        {
+            Console.WriteLine($"{Name} is beating {opponent.Name}");
+            opponent.LooseHealth(Strength);
+            Console.WriteLine($"{opponent.Name} has lost {Strength} hp");
         }
         public void Flee()
         {

@@ -11,8 +11,6 @@ new PokemonWorld();
 //Du kan også gå i Pokemonbutikken, der du kan kjøpe pokeballer og health potions
 //Når pokemonen din er sterk, kan du velge å gå i PokeGym og sloss mot en trener der
 
-//PAUSE TIL 13.10!
-
 //1. Identifiser objekter (tips - en,et,ei foran et ord substantiv typ) - egne klasser
 //2. Prøv å finne properties og funksjoner og hvilken klasse de tilhører 
 // - hva skal objektet ha, inneholde/eie, gjøre, hva beskriver den?

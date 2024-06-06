@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.ObjectiveC;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +18,7 @@ namespace UndervisningPoke
         public PokemonWorld()
         {
           
-            CurrentPlayer = new Trainer("Bjarne",new Pokemon("Pikachu","Lightning"));
+            CurrentPlayer = new Trainer("Bjarne",new Pokemon("Pikachu","Lightning"), Random);
             Store = new PokeShop();
             Gym = new PokeGym();
             WildPokemen = new List<Pokemon>()
@@ -109,17 +110,67 @@ namespace UndervisningPoke
                 Console.WriteLine("What do you want to do?");
                 Console.WriteLine("1. Attack");
                 Console.WriteLine("2. Catch");
-                Console.WriteLine("3. Flee");
-                Console.WriteLine("4. Change FightingPokemon");
+                Console.WriteLine("3. Flee");               
 
                 var menuChoice = Console.ReadLine();
 
                 if (menuChoice == "1")
                 {
-
+                    AttackPokemon(opponent);
+                    inBattle = false;
+                }
+                else if( menuChoice == "2") 
+                {
+                    var sucess = TryToCatchPokemon(opponent);
+                    if (sucess)
+                    {
+                        inBattle = false;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("You ran away for dear lyfe lol");
+                    inBattle = false;
                 }
             }
+        }
 
+        public bool TryToCatchPokemon(Pokemon opponent)
+        {
+            bool success = false;
+            //ha nok pokeballer (minst 1)
+            if (CurrentPlayer.GotBalls())
+            {
+                success = CurrentPlayer.ThrowBallInFace(opponent);               
+            }
+            else
+            {
+                Console.WriteLine("You aint got no ballz!");
+            }
+            return success;
+        }
+        public void AttackPokemon(Pokemon opponent)
+        {
+            //Pause til 13.07
+            var myPokemon = CurrentPlayer.SelectedFightingPokemon;
+          
+            while (opponent.IsAlive() && myPokemon.IsAlive())
+            {
+                myPokemon.Attack(opponent);
+                opponent.Attack(myPokemon);
+            }
+            if(opponent.IsAlive())
+            {
+                Console.WriteLine($"{myPokemon.Name} has died :( ... ");
+                //changepoken?
+            }
+            else
+            {
+                Console.WriteLine("You won the battle!");
+                //når kampen er ferdig evt XP til pokemon
+            }
+
+            //evt mulighet for å bruke items (potion)
         }
         public Pokemon GetRandomPokemon(string type)
         {

@@ -8,5 +8,10 @@ namespace UndervisningPoke
 {
     internal class Item
     {
+       public string ItemType { get; private set; }
+        public Item(string itemT)
+        {
+            ItemType = itemT;
+        }
     }
 }
