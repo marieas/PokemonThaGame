@@ -10,7 +10,7 @@ namespace UndervisningPoke
 {
     internal class PokemonWorld
     {
-        public Trainer CurrentPlayer { get; private set; }
+        public Player CurrentPlayer { get; private set; }
         public PokeShop Store { get; private set; }
         public PokeGym Gym { get; private set; }
         public List<Pokemon> WildPokemen { get; private set; } 
@@ -18,11 +18,11 @@ namespace UndervisningPoke
         public PokemonWorld()
         {
           
-            CurrentPlayer = new Trainer("Bjarne",new Pokemon("Pikachu","Lightning"), Random);
+            CurrentPlayer = new Player("Bjarne",new Pikachu(), Random);
             Store = new PokeShop();
-            Gym = new PokeGym();
+            Gym = new PokeGym("Kanto");
             WildPokemen = new List<Pokemon>()
-            {
+            {   new Pikachu(),
                 new Pokemon("Arcanine", "fire"),
                 new Pokemon("Grovyle", "grass"),
                 new Pokemon("Bulbasaur", "grass"),
@@ -97,7 +97,11 @@ namespace UndervisningPoke
                         _inMenu = false;
                         break;
                 }
-                Battle(opponent);
+                if(_inMenu)
+                {
+                    Battle(opponent);
+                }
+               
             }
         }
 
@@ -186,9 +190,8 @@ namespace UndervisningPoke
             shop.ShopMenu();
         }
         public void GoToGym()
-        {
-            var gym = new PokeGym();
-            gym.EnterGym();
+        {            
+            Gym.EnterGym(CurrentPlayer);
         }
     }
 }

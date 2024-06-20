@@ -7,23 +7,21 @@ using System.Threading.Tasks;
 
 namespace UndervisningPoke
 {
-    internal class Trainer
+    internal class Player : PokemonTrainer
     {      
-        public List<Pokemon> Pokemonz { get; private set; }
-        public int Cash { get; private set; }
-        public string Name { get; private set; }    
+        public int Cash { get; private set; }       
         public List<Item> Items { get; private set; }
-        public Pokemon SelectedFightingPokemon { get; private set; }
+        public List<Badge> GymBadges { get; private set; }
         private Random _random;
-        public Trainer(string name, Pokemon startPokemon, Random random)
+        public Player(string name, Pokemon startPokemon, Random random) : base(name)
         {
             Cash = 1000;
-            Name = name;
-            Items = new List<Item>(){  new Item("Pokeball"),
-                                       new Item("Pokeball"),
-                                       new Item("HealthPotion")
+            Items = new List<Item>(){  new Pokeball(),
+                                       new Pokeball(),
+                                       new HealthPotion()
                                     };
-            Pokemonz = new List<Pokemon> { startPokemon };
+            GymBadges = new List<Badge>();
+            Pokemonz.Add(startPokemon);
             SelectedFightingPokemon = startPokemon;
             _random = random;
 
@@ -43,11 +41,19 @@ namespace UndervisningPoke
             Pokemonz.Add(pokemon);
         }
 
+        public void ReceiveBadge(GymLeader leader)
+        {
+            var recievedBadge = leader.GiveBadge();
+            GymBadges.Add(recievedBadge);
+        }
+
         public bool ThrowBallInFace(Pokemon pokemon)
         {
             //kaste en pokeball i trynet
             Console.WriteLine($"Throwing a ball in {pokemon.Name}`s face... ");
-            Items.Remove(Items.First(item => item.ItemType == "Pokeball"));
+            var item = Items.First(item => item.ItemType == "Pokeball");
+            item.UseItem();
+            Items.Remove(item);
             var randResult = _random.Next(0, 2);
             if (randResult == 0)
             {
@@ -66,8 +72,9 @@ namespace UndervisningPoke
 
         public void ChoosePokemon()
         {
-
+            ChangePokemon();
         }
+      
         public void Fight()
         {
 

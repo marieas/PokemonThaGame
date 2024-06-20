@@ -6,12 +6,18 @@ using System.Threading.Tasks;
 
 namespace UndervisningPoke
 {
-    internal class Item
+    internal abstract class Item
     {
-       public string ItemType { get; private set; }
-        public Item(string itemT)
+        public string ItemType { get; private set; }
+        public Item(string itemType)
         {
-            ItemType = itemT;
+            ItemType = itemType;
         }
+
+        public virtual void PrintInfo()
+        {
+            Console.WriteLine($"{ItemType}");
+        }
+        public abstract void UseItem();
     }
 }
